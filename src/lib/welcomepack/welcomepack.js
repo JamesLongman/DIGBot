@@ -24,14 +24,14 @@ module.exports = {
         }
         users.push(mem.user.id);
         logger.debug(TAG, `New user count: ${users.length}`);
-        mem.send({ files: [{ attachment: 'src/assets/pictures/welcome-banner.png' }] })
-            .then(() => {
-                logger.debug(TAG, 'Message succesfully sent');
-                sendLot(mem);
-            })
-            .catch((err) => {
-                logger.warning(TAG, `File failed to send, error: ${err}`);
-            });
+//         mem.send({ files: [{ attachment: 'src/assets/pictures/welcome-banner.png' }] })
+//             .then(() => {
+//                 logger.debug(TAG, 'Message succesfully sent');
+//                 sendLot(mem);
+//             })
+//             .catch((err) => {
+//                 logger.warning(TAG, `File failed to send, error: ${err}`);
+//             });
         return true;
     },
 
