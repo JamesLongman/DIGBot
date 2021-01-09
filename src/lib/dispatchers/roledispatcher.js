@@ -73,6 +73,12 @@ module.exports = class RoleDispatcher extends Dispatcher {
                 member,
             }));
             break;
+        case 'dm':
+            member.send(template(action.content)({
+                role,
+                member,
+            }));
+            break;
         default:
             throw new Error(`Action type unkown: ${action.type}`);
         }
