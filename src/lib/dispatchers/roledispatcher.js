@@ -74,7 +74,7 @@ module.exports = class RoleDispatcher extends Dispatcher {
             }));
             break;
         case 'dm':
-            member.send(template(action.content.replace('\\n', '\n'))({
+            member.send(template(action.content.replace(/\\n/g, '\n'))({
                 role,
                 member,
             }));
