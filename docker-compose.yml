@@ -1,12 +1,6 @@
 version: '3.8'
 
 services:
-#  redis:
-#    image: "redis:alpine"
-#    volumes:
-#      - /data
-#    ports:
-#      - 6379
   mariadb:
     image: mariadb
     environment:
@@ -16,16 +10,15 @@ services:
       - MYSQL_PASSWORD=${DB_PASS:-pass}
     ports:
       - 3306:3306
-#  digbot:
-#    build: .
-#    volumes:
-#      # Links the local.json config to the container for local development
-#      - ./config/local.json:/usr/src/digbot/config/local.json
-#    depends_on:
-#      - redis
-#      - mongo
-#    tty: true
-#    environment:
-#      - REDIS_URL=redis://redis:6379
-#      - MONGO_URL=mongodb://mongo:27017/digbot
+  digbot:
+    build: .
+    depends_on:
+      - mariadb
+    tty: true
+    environment:
+      - DISCORD_TOKEN
+      - DB_HOST=mariadb
+      - DB_DATABASE=${DB_DATABASE:-digbot}
+      - DB_USER=${DB_USER:-dig}
+      - DB_PASS=${DB_PASS:-pass}
 

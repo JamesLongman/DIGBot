@@ -14,9 +14,9 @@ module.exports = {
     migrationsRun: process.env.NODE_ENV === 'production',
 
     migrations: [
-        `${__dirname}/migrations/*.js`,
+        `${__dirname}/dist/migrations/*.js`,
     ],
     cli: {
-        migrationsDir: 'migrations'
+        migrationsDir: 'dist/migrations'
     }
 };
