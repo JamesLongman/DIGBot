@@ -1,10 +1,8 @@
 import {Module} from '@nestjs/common';
 import {ReactionRolesController} from './reaction-roles.controller';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {ReactionRole} from './entities/reaction-role.entity';
+import {ReactionRole} from './models/reaction-role.entity';
 import {DiscordModule} from '../discord/discord.module';
-import {ReactionRolesSettingsController} from './controllers/reaction-roles-settings.controller';
-import {LogModule} from '../log/log.module';
 
 @Module({
     imports: [
@@ -12,11 +10,9 @@ import {LogModule} from '../log/log.module';
             ReactionRole,
         ]),
         DiscordModule,
-        LogModule,
     ],
     controllers: [
         ReactionRolesController,
-        ReactionRolesSettingsController,
     ],
 })
 export class ReactionRolesModule {

@@ -2,10 +2,10 @@ import {Controller, Logger} from '@nestjs/common';
 import {On} from '../discord/decorators/on.decorator';
 import {ChannelManager, GuildMember, MessageEmbed, Role, TextChannel} from 'discord.js';
 import {Repository} from 'typeorm';
-import {RoleMessenger} from './entities/role-messenger.entity';
+import {RoleMessenger} from './models/role-messenger.entity';
 import {InjectRepository} from '@nestjs/typeorm';
-import {JoinMessenger} from './entities/join-messenger.entity';
-import {Messenger} from './entities/concerns/messenger';
+import {JoinMessenger} from './models/join-messenger.entity';
+import {Messenger} from './models/concerns/messenger';
 
 @Controller()
 export class MessengerController {
@@ -65,7 +65,7 @@ export class MessengerController {
 
     private formatMessage(message: string, member: GuildMember): string {
         return message
-            .replace(/(?<!\\)\$member/, member.toString)
+            .replace(/(?<!\\)\$member/, member.toString())
             .replace(/(?<!\\)\$name/, member.displayName);
     }
 }

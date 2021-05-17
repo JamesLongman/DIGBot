@@ -1,23 +1,19 @@
 import {Controller, Logger} from '@nestjs/common';
 import {On} from 'src/discord/decorators/on.decorator';
 import {Repository} from 'typeorm';
-import {ReactionRole} from './entities/reaction-role.entity';
+import {ReactionRole} from './models/reaction-role.entity';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DiscordClient} from '../discord/discord.client';
 import {GuildManager, MessageEmbed} from 'discord.js';
 
 @Controller()
 export class ReactionRolesController {
     private static readonly logger = new Logger('ReactionRolesController');
 
-    private readonly guildManager: GuildManager;
-
     constructor(
         @InjectRepository(ReactionRole)
         private readonly roleRepository: Repository<ReactionRole>,
-        discordClient: DiscordClient,
+        private readonly guildManager: GuildManager,
     ) {
-        this.guildManager = discordClient.guilds;
     }
 
     @On('raw')

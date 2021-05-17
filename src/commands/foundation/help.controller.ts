@@ -1,6 +1,6 @@
 import {Controller} from '@nestjs/common';
-import {Command} from './foundation/decorators/command.decorator';
-import {CommandContainer} from './foundation/command.container';
+import {Command} from './decorators/command.decorator';
+import {CommandContainer} from './command.container';
 import {MessageEmbed} from 'discord.js';
 
 @Controller()
@@ -18,22 +18,6 @@ export class HelpController {
         return new MessageEmbed({
             fields: this.repository.all()
                 .filter(({command, adminOnly}) => !command.startsWith('!help') && !adminOnly)
-                .map(({command, description}) => ({
-                    name: command,
-                    value: description,
-                })),
-        });
-    }
-
-    @Command({
-        adminOnly: true,
-        command: '!help:admin',
-        description: 'Show information about the admin controllers',
-    })
-    async admin() {
-        return new MessageEmbed({
-            fields: this.repository.all()
-                .filter(({command, adminOnly}) => !command.startsWith('!help') && adminOnly)
                 .map(({command, description}) => ({
                     name: command,
                     value: description,

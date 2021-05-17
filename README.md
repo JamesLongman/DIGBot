@@ -1,8 +1,6 @@
 # DIGBot
 
 [![David DM Badge](https://david-dm.org/dignityofwar/digbot.svg)](https://david-dm.org/dignityofwar/digbot)
-[![Travis CI Badge](https://travis-ci.org/dignityofwar/DIGBot.svg?branch=master)](https://travis-ci.org/dignityofwar/DIGBot)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfed4f3b6b4a47639200d5a26c319d75)](https://www.codacy.com/app/dignityofwar/DIGBot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dignityofwar/DIGBot&amp;utm_campaign=Badge_Grade)
 
 ## About
 

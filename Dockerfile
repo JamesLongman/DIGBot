@@ -18,4 +18,6 @@ RUN npm ci --only=production
 COPY ormconfig.js .
 COPY --from=0 /usr/src/app/dist ./dist
 
+EXPOSE 3000
+
 CMD ["npm", "run", "start:prod"]

@@ -11,6 +11,8 @@ import {CommandException} from './exceptions/command.exception';
 export class CommandController {
     private static readonly logger = new Logger('CommandController');
 
+    private readonly devIds: string[] = process.env.DISCORD_DEV_IDS?.split(',') ?? [];
+
     constructor(
         private readonly repository: CommandContainer,
         private readonly settingsService: GuildSettingsService,
@@ -26,7 +28,7 @@ export class CommandController {
         const command = this.repository.get(commandName);
 
         if (command) {
-            const isAdmin = this.hasAdminPermissions(message.member);
+            const isAdmin = await this.hasAdminPermissions(message.member);
 
             if (command.adminOnly && !isAdmin) return; // Check permissions
             if (!isAdmin && !await this.isCommandChannel(message.channel)) return; // Check channel
@@ -53,8 +55,14 @@ export class CommandController {
         }
     }
 
-    private hasAdminPermissions(member: GuildMember): boolean {
-        return member.hasPermission(Permissions.FLAGS.ADMINISTRATOR);
+    private async hasAdminPermissions(member: GuildMember): Promise<boolean> {
+        if (this.devIds.includes(member.id))
+            return true;
+
+        if (member.hasPermission(Permissions.FLAGS.ADMINISTRATOR))
+            return true;
+
+        return this.settingsService.hasAdminRole(member);
     }
 
     private async isCommandChannel(channel: TextChannel): Promise<boolean> {
