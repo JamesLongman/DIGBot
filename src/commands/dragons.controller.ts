@@ -23,7 +23,7 @@ export class DragonsController {
 
         if (!member.roles.cache.has(settings.roleId)) {
             await member.roles.add(settings.roleId);
-            await message.react('✅');
+            await message.react('🐉');
         } else {
             await member.roles.remove(settings.roleId);
             return `${member}, you already had the herebedragons role. I've removed it. Type !dragons again to resubscribe.`;

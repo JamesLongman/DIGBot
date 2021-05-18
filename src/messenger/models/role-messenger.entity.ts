@@ -11,7 +11,8 @@ export class RoleMessenger implements Messenger {
     @Index()
     guildId: string;
 
-    @Column({unique: true})
+    @Column()
+    @Index()
     roleId: string;
 
     @Column({nullable: true})

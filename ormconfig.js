@@ -6,6 +6,8 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
 
+    charset: 'UTF8MB4_UNICODE_CI',
+
     entities: [
         `${__dirname}/dist/**/*.entity.js`,
     ],
