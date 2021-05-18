@@ -19,8 +19,8 @@ async function bootstrap() {
 
             process.exit(1);
         })
-        .on('unhandledRejection', (err) => {
-            logger.error(err);
+        .on('unhandledRejection', (err: any) => {
+            logger.error(err, err.stack);
 
             process.exit(1);
         });
