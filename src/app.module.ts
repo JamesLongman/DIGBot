@@ -4,6 +4,7 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {CommandModule} from './commands/command.module';
 import {ReactionRolesModule} from './reaction-roles/reaction-roles.module';
 import {MessengerModule} from './messenger/messenger.module';
+import {McsModule} from './mcs/mcs.module';
 
 @Module({
     imports: [
@@ -12,6 +13,7 @@ import {MessengerModule} from './messenger/messenger.module';
         CommandModule,
         ReactionRolesModule,
         MessengerModule,
+        McsModule,
     ],
 })
 export class AppModule {
